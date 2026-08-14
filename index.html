@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="uk">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="theme-color" content="#2b1027">
+    <meta name="description" content="Особливе запрошення на побачення">
+    <title>Для тебе — з любов'ю ❤️</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Manrope:wght@400;500;600;700;800&family=Marck+Script&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <canvas id="particles-canvas" aria-hidden="true"></canvas>
+    <div class="aurora aurora-one" aria-hidden="true"></div>
+    <div class="aurora aurora-two" aria-hidden="true"></div>
+    <div class="noise" aria-hidden="true"></div>
+
+    <section id="envelope-scene" class="envelope-scene" aria-label="Романтичний лист">
+        <div class="intro-copy">
+            <span class="eyebrow">маленький сюрприз</span>
+            <h1>У мене для тебе дещо особливе</h1>
+        </div>
+        <button class="envelope-wrapper" id="envelope-wrapper" type="button" aria-label="Відкрити конверт">
+            <span class="envelope-glow" aria-hidden="true"></span>
+            <span class="envelope" id="envelope">
+                <span class="letter" id="letter">
+                    <span class="letter-content"><span class="mini-heart">♥</span><span class="letter-kicker">цей лист</span><strong>тільки для тебе</strong></span>
+                </span>
+                <span class="envelope-back"></span><span class="envelope-flap"></span><span class="envelope-front"></span>
+                <span class="envelope-seal"><span>♥</span></span>
+            </span>
+            <span class="envelope-hint">Натисни, щоб відкрити <i>↗</i></span>
+        </button>
+    </section>
+
+    <main id="main-content" class="main-content" aria-hidden="true">
+        <article class="card-shell">
+            <header class="card-topbar">
+                <span class="tiny-mark">для тебе <b>♥</b></span>
+                <div class="progress" aria-label="Прогрес"><span class="progress-dot active"></span><span class="progress-dot"></span><span class="progress-dot"></span><span class="progress-dot"></span></div>
+            </header>
+
+            <div id="screen-1" class="screen active" data-step="1">
+                <div class="screen-inner hero-screen">
+                    <div class="love-note">одне дуже важливе питання</div>
+                    <h2>Підеш зі мною<br><em>на побачення?</em></h2>
+                    <p class="lead">Обіцяю гарний вечір, багато усмішок і трішки магії ✨</p>
+                    <div class="photo-stage">
+                        <span class="doodle doodle-heart">♡</span><span class="doodle doodle-star">✦</span>
+                        <figure class="polaroid polaroid-main"><img src="photo1.jpg" alt="Наша спільна фотографія"><figcaption>Тільки скажи «так»…</figcaption></figure>
+                    </div>
+                    <div class="buttons-area">
+                        <button id="btn-yes" class="btn btn-primary" type="button"><span>Так, звісно!</span><b>♥</b></button>
+                        <button id="btn-no" class="btn btn-ghost" type="button">Ні</button>
+                    </div>
+                    <p id="no-caption" class="no-caption" aria-live="polite"></p>
+                </div>
+            </div>
+
+            <form id="date-form" action="https://api.web3forms.com/submit" method="POST">
+                <input type="hidden" name="access_key" value="YOUR_ACCESS_KEY_HERE">
+                <input type="hidden" name="subject" value="Нове побачення підтверджено! ❤️">
+                <input type="hidden" name="from_name" value="Твоя Кохана">
+                <input type="hidden" name="Дата" id="input-date"><input type="hidden" name="Тип побачення" id="input-type">
+
+                <div id="screen-2" class="screen hidden" data-step="2">
+                    <div class="screen-inner">
+                        <div class="celebrate-icon">♥<span>✦</span><i>✦</i></div>
+                        <div class="love-note">я так і знала</div>
+                        <h2>Ура! Це буде<br><em>чудовий день</em></h2>
+                        <p class="lead">Тепер залишилося обрати, коли саме почнеться наша маленька пригода.</p>
+                        <label class="field-label" for="date-picker">Обери дату</label>
+                        <div class="input-wrap date-wrap"><input type="date" id="date-picker" class="styled-input" required><span class="field-icon">♥</span></div>
+                        <button type="button" id="btn-next-2" class="btn btn-primary btn-wide"><span>Обрати настрій</span><b>→</b></button>
+                    </div>
+                </div>
+
+                <div id="screen-3" class="screen hidden" data-step="3">
+                    <div class="screen-inner">
+                        <div class="love-note">наш ідеальний план</div>
+                        <h2>Що робитимемо<br><em>разом?</em></h2>
+                        <p class="lead compact">Обери те, до чого сьогодні найбільше лежить душа.</p>
+                        <div class="options-grid">
+                            <button class="option-card" type="button" data-type="Поїсти"><span class="option-icon">🍝</span><span><strong>Смачно поїсти</strong><small>затишно й смачно</small></span><i>↗</i></button>
+                            <button class="option-card" type="button" data-type="Поїздка"><span class="option-icon">🚗</span><span><strong>Мініподорож</strong><small>туди, куди хочеться</small></span><i>↗</i></button>
+                            <button class="option-card" type="button" data-type="Розваги"><span class="option-icon">🎡</span><span><strong>Трохи пригод</strong><small>емоції та сміх</small></span><i>↗</i></button>
+                            <button class="option-card" type="button" data-type="Відпочинок"><span class="option-icon">🌙</span><span><strong>Затишний вечір</strong><small>тільки ми вдвох</small></span><i>↗</i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="screen-4" class="screen hidden" data-step="4">
+                    <div class="screen-inner">
+                        <div class="love-note">ще одна деталь</div><h2 id="screen-4-title">Твої побажання</h2><p id="screen-4-desc" class="lead"></p>
+                        <label class="field-label" for="wishes-input">Розкажи мені</label>
+                        <div class="input-wrap"><textarea name="Побажання" id="wishes-input" class="styled-input styled-textarea" required></textarea><span class="char-count"><b id="char-count">0</b> / 180</span></div>
+                        <button type="button" id="btn-next-4" class="btn btn-primary btn-wide hidden"><span>Обрати час</span><b>→</b></button>
+                        <button type="submit" id="btn-submit-4" class="btn btn-primary btn-wide hidden"><span>Домовились!</span><b>♥</b></button>
+                    </div>
+                </div>
+
+                <div id="screen-time" class="screen hidden" data-step="4">
+                    <div class="screen-inner">
+                        <div class="love-note">фінальний штрих</div><h2>О котрій годині<br><em>зустрінемось?</em></h2><p class="lead">Я вже починаю чекати на цю мить.</p>
+                        <label class="field-label" for="time-picker">Обери час</label>
+                        <div class="input-wrap date-wrap"><input type="time" name="Час" id="time-picker" class="styled-input"><span class="field-icon">✦</span></div>
+                        <button type="submit" id="btn-submit-time" class="btn btn-primary btn-wide"><span>Домовились!</span><b>♥</b></button>
+                    </div>
+                </div>
+            </form>
+
+            <div id="screen-final" class="screen hidden final-screen" data-step="5">
+                <div class="screen-inner">
+                    <div class="final-badge"><span>♥</span></div><div class="love-note">у нас побачення!</div><h2>До зустрічі,<br><em>моя любов</em></h2>
+                    <p id="final-summary" class="final-summary"></p>
+                    <div class="photo-stage final-photo-stage"><figure class="polaroid polaroid-final"><img src="photo2.jpg" alt="Ще одна наша спільна фотографія"><figcaption>Найкраще ще попереду ♥</figcaption></figure></div>
+                    <p class="final-love-text">Я тебе дуже-дуже сильно люблю!</p>
+                </div>
+            </div>
+        </article>
+    </main>
+    <div id="confetti-layer" class="confetti-layer" aria-hidden="true"></div>
+    <script src="script.js"></script>
+</body>
+</html>
