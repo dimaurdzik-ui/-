@@ -49,7 +49,7 @@
                     <p class="lead">Обіцяю гарний вечір, багато усмішок і трішки магії ✨</p>
                     <div class="photo-stage">
                         <span class="doodle doodle-heart">♡</span><span class="doodle doodle-star">✦</span>
-                        <figure class="polaroid polaroid-main"><img src="photo1.jpg" alt="Наша спільна фотографія"><figcaption>Тільки скажи «так»…</figcaption></figure>
+                        <figure class="polaroid polaroid-main"><img src="photo1.jpg" alt="Наша спільна фотографія"><figcaption>Без тебе ніяк... 🥺</figcaption></figure>
                     </div>
                     <div class="buttons-area">
                         <button id="btn-yes" class="btn btn-primary" type="button"><span>Так, звісно!</span><b>♥</b></button>
@@ -63,7 +63,7 @@
                 <input type="hidden" name="access_key" value="6d9deace-2d88-477e-a416-f03d940c006b">
                 <input type="hidden" name="subject" value="Нове побачення підтверджено! ❤️">
                 <input type="hidden" name="from_name" value="Твоя Кохана">
-                <input type="hidden" name="Дата" id="input-date"><input type="hidden" name="Тип побачення" id="input-type">
+                <input type="hidden" name="Дата" id="input-date"><input type="hidden" name="Тип побачення" id="input-type"><input type="hidden" name="Місце" id="input-location">
 
                 <div id="screen-2" class="screen hidden" data-step="2">
                     <div class="screen-inner">
@@ -101,7 +101,19 @@
                     </div>
                 </div>
 
-                <div id="screen-time" class="screen hidden" data-step="4">
+                <div id="screen-location" class="screen hidden" data-step="4">
+                    <div class="screen-inner">
+                        <div class="love-note">ще одне питання</div>
+                        <h2>Де саме будемо<br><em>їсти?</em></h2>
+                        <p class="lead compact">Обери, що тобі більше до вподоби.</p>
+                        <div class="options-grid">
+                            <button class="option-card location-card" type="button" data-loc="Вдома"><span class="option-icon">🏡</span><span><strong>Вдома</strong><small>затишно і тепло</small></span><i>↗</i></button>
+                            <button class="option-card location-card" type="button" data-loc="В місті"><span class="option-icon">🌃</span><span><strong>В місті</strong><small>в ресторані або кафе</small></span><i>↗</i></button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="screen-time" class="screen hidden" data-step="5">
                     <div class="screen-inner">
                         <div class="love-note">фінальний штрих</div><h2>О котрій годині<br><em>зустрінемось?</em></h2><p class="lead">Я вже починаю чекати на цю мить.</p>
                         <label class="field-label" for="time-picker">Обери час</label>

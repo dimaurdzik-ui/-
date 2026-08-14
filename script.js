@@ -58,7 +58,7 @@ document.addEventListener('DOMContentLoaded', () => {
     envelopeWrapper.addEventListener('click', openEnvelope);
 
     const screens = {
-        s1: document.getElementById('screen-1'), s2: document.getElementById('screen-2'), s3: document.getElementById('screen-3'), s4: document.getElementById('screen-4'), sTime: document.getElementById('screen-time'), sFinal: document.getElementById('screen-final')
+        s1: document.getElementById('screen-1'), s2: document.getElementById('screen-2'), s3: document.getElementById('screen-3'), s4: document.getElementById('screen-4'), sLoc: document.getElementById('screen-location'), sTime: document.getElementById('screen-time'), sFinal: document.getElementById('screen-final')
     };
     const progressDots = [...document.querySelectorAll('.progress-dot')];
     const form = document.getElementById('date-form');
@@ -67,6 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
     const wishesInput = document.getElementById('wishes-input');
     const inputDate = document.getElementById('input-date');
     const inputType = document.getElementById('input-type');
+    const inputLoc = document.getElementById('input-location');
     const screen4Title = document.getElementById('screen-4-title');
     const screen4Desc = document.getElementById('screen-4-desc');
     const btnNext4 = document.getElementById('btn-next-4');
@@ -157,7 +158,20 @@ document.addEventListener('DOMContentLoaded', () => {
     wishesInput.addEventListener('input', () => { document.getElementById('char-count').textContent = wishesInput.value.length; });
     btnNext4.addEventListener('click', () => {
         if (!wishesInput.value.trim()) return markInvalid(wishesInput);
-        goTo(screens.s4, screens.sTime);
+        if (inputType.value === 'Поїсти') {
+            goTo(screens.s4, screens.sLoc);
+        } else {
+            goTo(screens.s4, screens.sTime);
+        }
+    });
+
+    document.querySelectorAll('.location-card').forEach(card => {
+        card.addEventListener('click', () => {
+            document.querySelectorAll('.location-card').forEach(item => item.classList.remove('selected'));
+            card.classList.add('selected');
+            inputLoc.value = card.dataset.loc;
+            setTimeout(() => goTo(screens.sLoc, screens.sTime), reducedMotion ? 10 : 220);
+        });
     });
 
     function formatDate(value) {
@@ -192,7 +206,8 @@ document.addEventListener('DOMContentLoaded', () => {
         }
         const typeLabels = { 'Поїсти': 'смачна вечеря', 'Поїздка': 'мініподорож', 'Розваги': 'трохи пригод', 'Відпочинок': 'затишний вечір' };
         const timeText = timePicker.value ? ` о ${timePicker.value}` : '';
-        document.getElementById('final-summary').textContent = `${formatDate(datePicker.value)}${timeText} · ${typeLabels[inputType.value] || inputType.value}`;
+        const locText = (inputType.value === 'Поїсти' && inputLoc.value) ? ` (${inputLoc.value})` : '';
+        document.getElementById('final-summary').textContent = `${formatDate(datePicker.value)}${timeText} · ${typeLabels[inputType.value] || inputType.value}${locText}`;
         setTimeout(() => { goTo(needsTime ? screens.sTime : screens.s4, screens.sFinal); burstConfetti(90); }, reducedMotion ? 20 : 450);
     }
     form.addEventListener('submit', submitForm);
