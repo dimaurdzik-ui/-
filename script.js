@@ -175,7 +175,18 @@ document.addEventListener('DOMContentLoaded', () => {
         const accessKey = form.querySelector('[name="access_key"]').value;
         if (accessKey && accessKey !== 'YOUR_ACCESS_KEY_HERE') {
             try {
-                const response = await fetch(form.action, { method: 'POST', body: new FormData(form), headers: { Accept: 'application/json' } });
+                const formData = new FormData(form);
+                const object = Object.fromEntries(formData);
+                const json = JSON.stringify(object);
+
+                const response = await fetch(form.action, {
+                    method: 'POST',
+                    headers: {
+                        'Content-Type': 'application/json',
+                        'Accept': 'application/json'
+                    },
+                    body: json
+                });
                 if (!response.ok) throw new Error('Не вдалося надіслати форму');
             } catch (error) { console.warn('Форма не надіслана, але відповідь збережена у сценарії.', error); }
         }
