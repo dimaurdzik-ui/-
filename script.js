@@ -150,7 +150,12 @@ document.addEventListener('DOMContentLoaded', () => {
             timePicker.required = withTime;
             btnNext4.classList.toggle('hidden', !withTime);
             btnSubmit4.classList.toggle('hidden', withTime);
-            setTimeout(() => goTo(screens.s3, screens.s4), reducedMotion ? 10 : 220);
+            
+            if (type === 'Поїсти') {
+                setTimeout(() => goTo(screens.s3, screens.sLoc), reducedMotion ? 10 : 220);
+            } else {
+                setTimeout(() => goTo(screens.s3, screens.s4), reducedMotion ? 10 : 220);
+            }
         });
     });
 
@@ -158,11 +163,7 @@ document.addEventListener('DOMContentLoaded', () => {
     wishesInput.addEventListener('input', () => { document.getElementById('char-count').textContent = wishesInput.value.length; });
     btnNext4.addEventListener('click', () => {
         if (!wishesInput.value.trim()) return markInvalid(wishesInput);
-        if (inputType.value === 'Поїсти') {
-            goTo(screens.s4, screens.sLoc);
-        } else {
-            goTo(screens.s4, screens.sTime);
-        }
+        goTo(screens.s4, screens.sTime);
     });
 
     document.querySelectorAll('.location-card').forEach(card => {
@@ -170,7 +171,7 @@ document.addEventListener('DOMContentLoaded', () => {
             document.querySelectorAll('.location-card').forEach(item => item.classList.remove('selected'));
             card.classList.add('selected');
             inputLoc.value = card.dataset.loc;
-            setTimeout(() => goTo(screens.sLoc, screens.sTime), reducedMotion ? 10 : 220);
+            setTimeout(() => goTo(screens.sLoc, screens.s4), reducedMotion ? 10 : 220);
         });
     });
 
